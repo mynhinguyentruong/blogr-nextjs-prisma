@@ -15,11 +15,11 @@ export type PostProps = {
 
 const Post: React.FC<{ post: PostProps, feed: PostProps[] }> = ({ post, feed }) => {
   const authorName = post.author ? post.author.name : "Unknown author";
-  // const authorEmail = post.author.email ? post.author.email : "No email provided"
+  const authorEmail = post.author?.email ? post.author.email : "No email provided"
   return (
     <div onClick={() => Router.push("/p/[id]", `/p/${post.id}`)}>
       <h2>{post.title}</h2>
-      <small>By {authorName} / {/*authorEmail*/}</small>
+      <small>By {authorName} / {authorEmail}</small>
       <ReactMarkdown children={post.content} />
       <style jsx>{`
         div {
