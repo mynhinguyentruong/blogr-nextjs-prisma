@@ -6,6 +6,7 @@ import { PostProps } from "../../components/Post"
 import prisma from "../../lib/prisma";
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
+  console.log(params)
   const post = await prisma.post.findUnique({
     where: { id: String(params?.id) },
     include: {
@@ -15,12 +16,13 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
     }
   })
   return {
-    props: { post },
+    props: post,
   }
 }
 
 const Post: React.FC<PostProps> = (props) => {
   let title = props.title
+
   if (!props.published) {
     title = `${title} (Draft)`
   }
