@@ -12,7 +12,7 @@ const apiHandler: NextApiHandler = async (req, res) => {
     console.log('session in /api/post',session)
     console.log('session in /api/post',session)
 
-    const newPost = prisma.post.create({
+    const newPost = await prisma.post.create({
         data: {
             title,
             content,
