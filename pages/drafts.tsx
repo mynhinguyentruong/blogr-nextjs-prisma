@@ -4,6 +4,9 @@ import { getSession } from "next-auth/react";
 import Layout from "../components/Layout";
 import Post, { PostProps } from "../components/Post";
 
+import { getServerSession } from "next-auth/next";
+import { options } from "./api/auth/[...nextauth]";
+
 type DraftsProps = {
     drafts: PostProps[]
 }
@@ -44,10 +47,12 @@ const Drafts: React.FC<DraftsProps> = (props) => {
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
 
-    console.log(req)
-    const session = await getSession({ req })
+    const session = await getServerSession(req, res, options)
 
-    console.log(session)
+    console.log("session", session)
+    console.log("session", session)
+    console.log("session", session)
+
 
     if (!session) {
         res.statusCode = 403;
