@@ -31,7 +31,7 @@ const Post: React.FC<PostProps> = (props) => {
   }
 
   const userHasValidSession = Boolean(session)
-  const userIsTheAuthor = session.user.email === props.author.email
+  const userIsTheAuthor = session?.user?.email === props?.author.email
 
   async function publishPost(id: String): Promise<void> {
     await fetch(`/api/publish/${id}`, {
