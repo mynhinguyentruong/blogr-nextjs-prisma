@@ -41,6 +41,10 @@ const Post: React.FC<PostProps> = (props) => {
     await Router.push('/')
   }
 
+  async function deletePost(id: String) {
+
+  }
+
   let title = props.title
 
   if (!props.published) {
@@ -54,6 +58,7 @@ const Post: React.FC<PostProps> = (props) => {
         <p>By {props?.author?.name || "Unknown author"}</p>
         <ReactMarkdown children={props.content} />
         {!props.published && userHasValidSession && userIsTheAuthor && (<button onClick={() => publishPost(props.id)}>Publish</button>)}
+        {userHasValidSession && userIsTheAuthor && (<button onClick={() => deletePost(props.id)}>Delete</button>)}
       </div>
       <style jsx>{`
         .page {
