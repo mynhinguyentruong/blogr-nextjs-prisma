@@ -42,7 +42,10 @@ const Post: React.FC<PostProps> = (props) => {
   }
 
   async function deletePost(id: String) {
-
+    await fetch(`/api/post/${id}`, {
+      method: 'DELETE'
+    })
+    await Router.push('/')
   }
 
   let title = props.title
