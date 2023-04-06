@@ -18,8 +18,8 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
     }
   })
   if (!post.author) {
-    post.author.email = 'Unknown email';
-    post.author.name = 'Unknown author'
+    post.author['email'] = 'Unknown email';
+    post.author['name'] = 'Unknown author'
   }
   console.log(post)
   return {
@@ -62,7 +62,7 @@ const Post: React.FC<PostProps> = (props) => {
     <Layout>
       <div>
         <h2>{title}</h2>
-        <p>By {props?.author?.name || "Unknown author"}</p>
+        <p>By {props.author.name || "Unknown author"}</p>
         <ReactMarkdown children={props.content} />
         {!props.published && userHasValidSession && userIsTheAuthor && (<button onClick={() => publishPost(props.id)}>Publish</button>)}
         {userHasValidSession && userIsTheAuthor && (<button onClick={() => deletePost(props.id)}>Delete</button>)}
