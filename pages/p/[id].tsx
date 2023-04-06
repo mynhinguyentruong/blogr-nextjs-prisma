@@ -17,10 +17,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
       }
     }
   })
-  if (!post.author) {
-    post.author['email'] = 'Unknown email';
-    post.author['name'] = 'Unknown author'
-  }
+
   console.log(post)
   return {
     props: post,
